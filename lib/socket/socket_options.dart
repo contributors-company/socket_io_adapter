@@ -1,5 +1,12 @@
 part of 'socket_io_adapter.dart';
 
+/// [SocketIOOptions] is the options for the socket.
+/// It contains the path, transports, headers, and timeout.
+/// The path is the path to the server.
+/// The transports are the transports to be used.
+/// The headers are the headers to be sent to the server.
+/// The timeout is the timeout for the socket.
+
 class SocketIOOptions {
   final String path;
   final List<String> transports;
@@ -10,7 +17,7 @@ class SocketIOOptions {
     required this.path,
     this.transports = const ['websocket'],
     this.timeout = 900000, // 15 minutes
-    this.headers = const {HttpHeaders.acceptHeader: 'application/json'}
+    this.headers = const {'accept': 'application/json'},
   });
 
   io.OptionBuilder toOptionBuilder() {

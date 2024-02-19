@@ -1,3 +1,11 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+*  initial release.
+
+## 1.0.0
+
+* added description and comments for the all functions
+
+## 1.0.1
+
+* added description and comments for the all functions

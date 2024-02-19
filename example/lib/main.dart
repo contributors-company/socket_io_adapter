@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socket_io_adapter/socket_io_adapter.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -38,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     socket?.emit('event').then((response) {
       answear = response.data.toString();
     }).catchError((error) {
-      if(error is SocketException) {
+      if (error is SocketException) {
         answear = error.response.data.toString();
       } else {
         answear = error.toString();
@@ -58,9 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(listenAnswear ?? 'ListenAnswear'),
-
             Text(answear ?? 'Press the button to get an answear'),
-            ElevatedButton(onPressed: onPressed, child: const Text('Emit event'))
+            ElevatedButton(
+              onPressed: onPressed,
+              child: const Text('Emit event'),
+            )
           ],
         ),
       ),

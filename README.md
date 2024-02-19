@@ -6,7 +6,7 @@
 flutter pub add socket_io_adapter
 ```
 
-### And full installation of [socket_io_client](https://pub.dev/packages/socket_io_client) via the link 
+### And full installation of [socket_io_client](https://pub.dev/packages/socket_io_client#troubleshooting) via the link 
 
 ## Usage
 
