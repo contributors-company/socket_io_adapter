@@ -17,3 +17,7 @@
 ## 1.0.3
 
 * pub points
+
+## 1.0.4
+
+* format code

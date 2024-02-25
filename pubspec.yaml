@@ -1,6 +1,6 @@
 name: socket_io_adapter
 description: "This package is a wrapper for socket_io_client, simplifying connection to a socket.io server, event listening, and event emission to the server."
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/AlexHCJP/socket_io_adapter
 
 environment:

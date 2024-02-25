@@ -8,6 +8,7 @@ part of 'socket_io_adapter.dart';
 class SocketException implements Exception {
   /// The response from the server.
   final SocketResponse response;
+
   /// The stack trace of the error.
   final StackTrace stackTrace;
 

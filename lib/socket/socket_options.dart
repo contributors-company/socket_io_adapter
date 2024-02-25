@@ -27,7 +27,6 @@ class SocketIOOptions {
     this.headers = const {'accept': 'application/json'},
   });
 
-
   /// [toOptionBuilder] is a method that converts the [SocketIOOptions] to an [io.OptionBuilder].
   io.OptionBuilder toOptionBuilder() {
     return io.OptionBuilder()
