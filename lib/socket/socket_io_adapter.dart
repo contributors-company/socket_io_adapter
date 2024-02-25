@@ -38,6 +38,11 @@ class SocketIOAdapter {
     }
   }
 
+  /// [connect] connects to the server using the given [auth] parameters.
+  /// If the [auth] is null, it uses the options to connect.
+  /// If the [auth] is not null, it uses the options and the [auth] to connect.
+  /// If the socket is already connected, it does nothing.
+
   connect([Map<String, dynamic>? auth]) {
     if (_socket != null || _socket?.active == true) return;
     late io.OptionBuilder optionBuilder;
@@ -60,6 +65,13 @@ class SocketIOAdapter {
 
   disconnect() => _socket?.dispose();
 
+  /// [emit] emits an event to the server with the given [event] and [data].
+  /// It returns a [Future] of [SocketResponse].
+  /// It uses the [interceptors] to intercept the request and response.
+  /// It uses the [checkResponse] to check if the response is valid.
+  /// If the response is valid, it returns the response.
+  /// If the response is not valid, it throws a [SocketException].
+  /// If an error occurs, it throws the error.
   Future<SocketResponse> emit(String event, [data]) async {
     Completer<SocketResponse> completer = Completer<SocketResponse>();
     SocketRequest request = SocketRequest.create(event, data);
@@ -78,7 +90,9 @@ class SocketIOAdapter {
           );
           completer.complete(response);
         } else {
-          _onError(data);
+          for (var interceptor in interceptors) {
+            interceptor.onError(data);
+          }
           completer.completeError(
             SocketException(response, StackTrace.current),
           );
@@ -91,21 +105,27 @@ class SocketIOAdapter {
     return completer.future;
   }
 
-  _onError(dynamic error) {
-    for (var interceptor in interceptors) {
-      interceptor.onError(error);
-    }
-  }
-
+  /// [onAll] listens to all the events in the [callbacks].
+  /// It takes a [EventCallback] as an argument.
+  /// The [EventCallback] is a map of event names and their respective callback functions.
   onAll(EventCallback callbacks) {
     callbacks.forEach((key, value) {
       _socket?.on(key, value);
     });
   }
 
+  /// [on] listens to the [event] and calls the [callback] when the event occurs.
+  /// It takes a [String] event and a [Function] callback as arguments.
+  /// The [Function] callback takes a dynamic data as an argument.
+  /// It uses the [interceptors] to intercept the event data.
   on(String event, Function(dynamic) callback) {
     _socket?.on(event, (data) {
-      callback(data);
+      callback(
+        interceptors.fold(
+          data,
+          (data, interceptor) => interceptor.onEvent(event, data),
+        ),
+      );
     });
   }
 }

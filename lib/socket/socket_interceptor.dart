@@ -17,4 +17,8 @@ abstract class SocketInterceptor {
   }
 
   void onError(dynamic error) {}
+
+  dynamic onEvent(String event, dynamic data) {
+    return data;
+  }
 }

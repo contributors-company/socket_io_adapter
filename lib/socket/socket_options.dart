@@ -8,9 +8,16 @@ part of 'socket_io_adapter.dart';
 /// The timeout is the timeout for the socket.
 
 class SocketIOOptions {
+  /// The path to the server.
   final String path;
+
+  /// The transports to be used.
   final List<String> transports;
+
+  /// The headers to be sent to the server.
   final Map<String, dynamic> headers;
+
+  /// The timeout for the socket.
   final int timeout;
 
   SocketIOOptions({
@@ -20,6 +27,8 @@ class SocketIOOptions {
     this.headers = const {'accept': 'application/json'},
   });
 
+
+  /// [toOptionBuilder] is a method that converts the [SocketIOOptions] to an [io.OptionBuilder].
   io.OptionBuilder toOptionBuilder() {
     return io.OptionBuilder()
         .setTransports(transports)

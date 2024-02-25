@@ -6,7 +6,9 @@ part of 'socket_io_adapter.dart';
 /// The [stackTrace] is the stack trace of the error.
 
 class SocketException implements Exception {
+  /// The response from the server.
   final SocketResponse response;
+  /// The stack trace of the error.
   final StackTrace stackTrace;
 
   SocketException(this.response, this.stackTrace);

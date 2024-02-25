@@ -9,3 +9,11 @@
 ## 1.0.1
 
 * added description and comments for the all functions
+
+## 1.0.2
+
+* normal readme file
+
+## 1.0.3
+
+* pub points
