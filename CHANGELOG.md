@@ -21,3 +21,7 @@
 ## 1.0.4
 
 * format code
+
+## 1.0.5
+
+* delete flutter dependency
